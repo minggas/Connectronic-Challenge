@@ -1,68 +1,63 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# Challenge Connectronic
 
-In the project directory, you can run:
+Criação de um CRUD.
+* Desenvolver usando React e Material-UI 
+* Todo item possui nome e descrição
+* Exclusão necessita confirmação
 
-### `npm start`
+## Instalação
+`git clone https://github.com/minggas/Connectronic-Challenge.git`
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+`cd Connectronic-Challenge`
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## How to run
+### run dev server
+`yarn start`
 
-### `npm test`
+### run build prod
+`yarn build`
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### run tests
+`yarn test`
 
-### `npm run build`
+## Telas de mock-up
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Dashboard 
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+![alt text](https://github.com/Wellers0n/Connectronic-Challenge/raw/master/img/dashboard.png "Dashboard view")
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Lista de items
 
-### `npm run eject`
+![alt text](https://github.com/Wellers0n/Connectronic-Challenge/raw/master/img/lista.png "Add Button")
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Botão Adicionar
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![alt text](https://github.com/Wellers0n/Connectronic-Challenge/raw/master/img/add.png "Add Button")
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Tela de criaçao de novo item
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+![alt text](https://github.com/Wellers0n/Connectronic-Challenge/raw/master/img/additem.png "Add Button")
 
-## Learn More
+### Botão para editar item
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![alt text](https://github.com/Wellers0n/Connectronic-Challenge/raw/master/img/editar.png "Add Button")
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Tela de ediçao de novo item
 
-### Code Splitting
+![alt text](https://github.com/Wellers0n/Connectronic-Challenge/raw/master/img/editaitem.png "Add Button")
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+### Botão para apagar item
+![alt text](https://github.com/Wellers0n/Connectronic-Challenge/raw/master/img/deleteitem.png "Add Button")
 
-### Analyzing the Bundle Size
+### Dialogo de confirmação antes da exclusão
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+![alt text](https://github.com/Wellers0n/Connectronic-Challenge/raw/master/img/apagar.png "Add Button")
 
-### Making a Progressive Web App
+## Dependencies
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Além das dependencies normais do create-react-app:
+* Material-UI (core/icons)
+* Material Tables
+* @testing-library/react
