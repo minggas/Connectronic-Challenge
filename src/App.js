@@ -1,26 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import { makeStyles } from "@material-ui/core/styles";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Dashboard from "./components/Dashboard";
+const useStyles = makeStyles(theme => ({
+  root: {
+    display: "flex"
+  }
+}));
+export default function App(props) {
+  const classes = useStyles();
 
-function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className={classes.root}>
+        <CssBaseline />
+        <Route exact path="/" component={Dashboard} />
+      </div>
+    </Router>
   );
 }
-
-export default App;
