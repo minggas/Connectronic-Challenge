@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 
 //Components
 import Dashboard from "./views/Dashboard";
+import ItemForm from "./components/ItemForm";
 import ItemList from "./views/ItemList";
 import Layout from "./views/Layout";
 
@@ -19,6 +20,14 @@ export default function App() {
         <Layout items={state.length}>
           <Route exact path="/" component={Dashboard} />
           <Route path="/lista" component={ItemList} />
+          <Route
+            path="/create"
+            render={props => <ItemForm {...props} isCreate={true} />}
+          />
+          <Route
+            path="/edit/:id"
+            render={props => <ItemForm {...props} isCreate={false} />}
+          />
         </Layout>
       </Context.Provider>
     </Router>
