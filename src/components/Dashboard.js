@@ -12,24 +12,31 @@ const useStyles = makeStyles(theme => ({
     width: "100%",
     height: "300px"
   },
+
   card1: {
-    gridArea: "card1"
+    gridArea: "card1",
+    padding: "1rem"
   },
   card2: {
-    gridArea: "card2"
+    gridArea: "card2",
+    padding: "1rem"
   },
   card3: {
-    gridArea: "card3"
+    gridArea: "card3",
+    padding: "1rem"
   }
 }));
 
 export default function Dashboard() {
   const classes = useStyles();
+  const cards = ["card1", "card2", "card3"];
   return (
     <div className={classes.root}>
-      <Card className={classes.card1}>construção</Card>
-      <Card className={classes.card2}>construção</Card>
-      <Card className={classes.card3}>construção</Card>
+      {cards.map((tag, idx) => (
+        <Card key={idx} className={classes[tag]}>
+          construção
+        </Card>
+      ))}
     </div>
   );
 }
