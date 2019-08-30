@@ -61,3 +61,4 @@ Além das dependencies normais do create-react-app:
 * Material-UI (core/icons)
 * Material Tables
 * @testing-library/react
+* clsx
