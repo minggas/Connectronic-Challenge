@@ -46,12 +46,26 @@ export default function ItemForm({ history, isCreate, location }) {
     name: name,
     description: description
   });
+  const [errors, setErrors] = React.useState({
+    name: false,
+    description: false
+  });
 
   const handleChange = event => {
     setValues({ ...values, [event.target.id]: event.target.value.toString() });
+    setErrors({ name: false, description: false });
   };
 
   const handleClick = event => {
+    console.log(values);
+    if (values.name === "") {
+      setErrors({ ...errors, name: true });
+      return;
+    }
+    if (values.description === "") {
+      setErrors({ ...errors, description: true });
+      return;
+    }
     if (event.target.textContent === "Adicionar") {
       dispatch({ type: "addItem", payload: values });
     }
@@ -99,11 +113,12 @@ export default function ItemForm({ history, isCreate, location }) {
         {isCreate ? "Criar" : "Editar"} Categoria
       </h2>
 
-      <form className={classes.container} noValidate autoComplete="off">
+      <form className={classes.container} autoComplete="off">
         <div style={{ display: "flex", width: "100%" }}>
           <TextField
             id="name"
             label="Nome"
+            error={errors.name}
             className={classes.textField}
             value={values.name}
             onChange={handleChange}
@@ -115,6 +130,7 @@ export default function ItemForm({ history, isCreate, location }) {
           <TextField
             id="description"
             label="Descrição"
+            error={errors.description}
             className={classes.textField}
             value={values.description}
             onChange={handleChange}
