@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import axios from "axios";
 import { Button, Paper, Grid } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import MaterialTable from "material-table";
@@ -8,7 +9,7 @@ import { Context } from "../App";
 import DeleteDialog from "../components/DeleteDialog";
 
 export default function MaterialTableDemo({ history }) {
-  const { dispatch, state: items } = useContext(Context);
+  const { dispatch, state } = useContext(Context);
   const [open, setOpen] = React.useState(false);
   const [selectedItem, setSelectedItem] = React.useState();
   const tableHead = {
@@ -22,10 +23,29 @@ export default function MaterialTableDemo({ history }) {
     setOpen(true);
   }
 
+  const deleteData = async () => {
+    const url = "http://localhost:8080/api/itens";
+    dispatch({ type: "FETCH_INIT" });
+    try {
+      const result = await axios["delete"](url, {
+        data: { id: selectedItem }
+      });
+      if (result.data) {
+        const filtered = state.data.filter(item => item._id !== selectedItem);
+        dispatch({
+          type: "FETCH_SUCCESS",
+          payload: filtered
+        });
+      }
+    } catch (error) {
+      dispatch({ type: "FETCH_FAILURE" });
+    }
+  };
+
   function handleClose(event) {
     const btnType = event.target.textContent;
     if (btnType === "Apagar") {
-      dispatch({ type: "deleteItem", payload: selectedItem });
+      deleteData();
     }
     setOpen(false);
   }
@@ -47,32 +67,36 @@ export default function MaterialTableDemo({ history }) {
           Adicionar <AddIcon />
         </Button>
       </Grid>
-      <MaterialTable
-        title="Categorias"
-        columns={tableHead.columns}
-        data={items}
-        actions={[
-          {
-            icon: "edit",
-            tooltip: "Editar Item ",
-            onClick: (event, rowData) => {
-              const id = rowData.tableData.id;
-              history.push(`/edit/${id}`);
+      {state.isLoading ? (
+        <h1>LOADING.....</h1>
+      ) : (
+        <MaterialTable
+          title="Categorias"
+          columns={tableHead.columns}
+          data={state.data}
+          actions={[
+            {
+              icon: "edit",
+              tooltip: "Editar Item ",
+              onClick: (event, rowData) => {
+                const id = rowData._id;
+                history.push(`/edit/${id}`);
+              }
+            },
+            {
+              icon: "delete",
+              tooltip: "Apagar Item",
+              onClick: (event, rowData) => {
+                setSelectedItem(rowData._id);
+                handleClickOpen();
+              }
             }
-          },
-          {
-            icon: "delete",
-            tooltip: "Apagar Item",
-            onClick: (event, rowData) => {
-              setSelectedItem(rowData.tableData.id);
-              handleClickOpen();
-            }
-          }
-        ]}
-        options={{
-          actionsColumnIndex: -1
-        }}
-      />
+          ]}
+          options={{
+            actionsColumnIndex: -1
+          }}
+        />
+      )}
       <DeleteDialog open={open} handleClose={handleClose} />
     </Paper>
   );
