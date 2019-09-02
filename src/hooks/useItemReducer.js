@@ -1,31 +1,25 @@
-export default (state, action) => {
+export const dataFetchReducer = (state, action) => {
   switch (action.type) {
-    case "reset":
-      return action.payload;
-    case "addItem": {
-      return [
+    case "FETCH_INIT":
+      return {
         ...state,
-        {
-          name: action.payload.name,
-          description: action.payload.description
-        }
-      ];
-    }
-    case "deleteItem":
-      return state.filter((_, index) => index !== action.payload);
-    case "updateItem":
-      return state.map((item, index) => {
-        if (index === action.payload.id) {
-          return {
-            ...item,
-            name: action.payload.name,
-            description: action.payload.description
-          };
-        } else {
-          return { ...item };
-        }
-      });
+        isLoading: true,
+        isError: false
+      };
+    case "FETCH_SUCCESS":
+      return {
+        ...state,
+        isLoading: false,
+        isError: false,
+        data: action.payload
+      };
+    case "FETCH_FAILURE":
+      return {
+        ...state,
+        isLoading: false,
+        isError: true
+      };
     default:
-      return state;
+      throw new Error();
   }
 };
