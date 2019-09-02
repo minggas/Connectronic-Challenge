@@ -1,5 +1,6 @@
-import React, { createContext, useReducer } from "react";
+import React, { createContext, useReducer, useEffect } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import axios from "axios";
 
 //Components
 import Dashboard from "./views/Dashboard";
@@ -8,16 +9,35 @@ import ItemList from "./views/ItemList";
 import Layout from "./views/Layout";
 
 //Custom Hooks
-import useItemReducer from "./hooks/useItemReducer";
+import { dataFetchReducer } from "./hooks/useItemReducer";
 
 export const Context = createContext();
 
 export default function App() {
-  const [state, dispatch] = useReducer(useItemReducer, []);
+  const [state, dispatch] = useReducer(dataFetchReducer, {
+    isLoading: false,
+    isError: false,
+    data: []
+  });
+
+  useEffect(() => {
+    const url = "http://localhost:8080/api/itens";
+
+    const fetchData = async () => {
+      dispatch({ type: "FETCH_INIT" });
+      try {
+        const result = await axios(url);
+        dispatch({ type: "FETCH_SUCCESS", payload: result.data });
+      } catch (error) {
+        dispatch({ type: "FETCH_FAILURE" });
+      }
+    };
+    fetchData();
+  }, []);
   return (
     <Router>
       <Context.Provider value={{ dispatch, state }}>
-        <Layout items={state.length}>
+        <Layout items={state.data.length}>
           <Route exact path="/" component={Dashboard} />
           <Route path="/lista" component={ItemList} />
           <Route
