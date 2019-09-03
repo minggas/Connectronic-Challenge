@@ -7,7 +7,7 @@ Criação de um CRUD.
 * Todo item possui nome e descrição
 * Exclusão necessita confirmação
 
-Servideor NodeJS criado com ExpressJs e MongoDB/Mongoose
+Servidor NodeJS criado com ExpressJs e MongoDB/Mongoose
 
 ## Instalação
 
