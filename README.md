@@ -7,19 +7,35 @@ Criação de um CRUD.
 * Todo item possui nome e descrição
 * Exclusão necessita confirmação
 
+Servideor NodeJS criado com ExpressJs e MongoDB/Mongoose
+
 ## Instalação
+
 `git clone https://github.com/minggas/Connectronic-Challenge.git`
 
 `cd Connectronic-Challenge`
 
 ## How to run
-### run dev server
+
+### RUN SERVER
+`cd server`
+
+`export DB=YOUR_MONGODB_URI PORT=8080`
+
+#### run dev server
+`yarn dev`
+
+#### run tests
+`yarn test`
+
+### RUN CLIENT
+#### run dev server
 `yarn start`
 
-### run build prod
+#### run build prod
 `yarn build`
 
-### run tests
+#### run tests
 `yarn test`
 
 ## Telas de mock-up
@@ -62,3 +78,12 @@ Além das dependencies normais do create-react-app:
 * Material Tables
 * @testing-library/react
 * clsx
+* axios
+
+Server dependencies:
+* body-parser
+* cors
+* express
+* helmet
+* mongodb
+* mongoose
