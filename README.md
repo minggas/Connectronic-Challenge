@@ -15,6 +15,13 @@ Servidor NodeJS criado com ExpressJs e MongoDB/Mongoose
 
 `cd Connectronic-Challenge`
 
+`yarn install`
+
+### install server
+`cd server`
+
+`yarn install`
+
 ## How to run
 
 ### RUN SERVER
