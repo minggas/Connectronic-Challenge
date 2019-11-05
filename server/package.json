@@ -14,7 +14,7 @@
 		"express": "^4.17.1",
 		"helmet": "^3.18.0",
 		"mongodb": "^3.2.7",
-		"mongoose": "^5.6.1"
+		"mongoose": "^5.7.5"
 	},
 	"devDependencies": {
 		"babel-cli": "^6.26.0",
